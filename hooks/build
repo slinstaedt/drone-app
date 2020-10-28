@@ -1,4 +1,11 @@
 #!/bin/bash
 
+mkdir -p src && cd src
+git clone https://github.com/drone/drone .
+rm .dockerignore
+cp ../Dockerfile .
 tag=$(git describe --tags --abbrev=0)
-docker build --build-arg TAG=$tag -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+echo "Building tag: $tag"
+version=${tag#v}
+
+docker build -t latest -t ${version} -t ${version%.*} -t ${version%%.*} .

@@ -2,9 +2,7 @@ FROM drone/drone AS trigger
 
 FROM golang:1 AS build
 WORKDIR /go/src
-RUN git clone https://github.com/drone/drone .
-ARG TAG=master
-RUN if [ -n "${TAG#master}" ]; then git checkout tags/$TAG -b $TAG; fi
+COPY . .
 ENV CGO_ENABLED=0
 ENV GOOS=linux 
 ENV GOARCH=amd64
