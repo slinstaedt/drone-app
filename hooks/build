@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker build --build-arg TAG=$SOURCE_BRANCH -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+tag=$(git describe --tags --abbrev=0)
+docker build --build-arg TAG=$tag -f $DOCKERFILE_PATH -t $IMAGE_NAME .

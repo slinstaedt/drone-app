@@ -1,3 +1,5 @@
+FROM drone/drone AS trigger
+
 FROM golang:1 AS build
 WORKDIR /go/src
 RUN git clone https://github.com/drone/drone .
