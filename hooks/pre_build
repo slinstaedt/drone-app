@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+mkdir -p src && cd src
+git clone https://github.com/drone/drone .
+rm .dockerignore
+cp ../Dockerfile .
+export TAG=$(git describe --tags --abbrev=0)
+echo "Building tag: $TAG"

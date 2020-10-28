@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eu
+
+version=${TAG#v}
+docker tag $DOCKER_REPO:latest $DOCKER_REPO:${version}
+docker tag $DOCKER_REPO:latest $DOCKER_REPO:${version%.*}
+docker tag $DOCKER_REPO:latest $DOCKER_REPO:${version%%.*}
+docker push $DOCKER_REPO:${version}
+docker push $DOCKER_REPO:${version%.*}
+docker push $DOCKER_REPO:${version%%.*}
