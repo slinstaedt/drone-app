@@ -3,8 +3,8 @@ RUN echo $SOURCE_BRANCH
 RUN echo $DOCKER_TAG
 WORKDIR /go/src
 RUN git clone https://github.com/drone/drone .
-ARG TAG=HEAD
-RUN if [ -n "${TAG#HEAD}" ]; then git checkout tags/$TAG -b $TAG; fi
+ARG TAG=master
+RUN if [ -n "${TAG#master}" ]; then git checkout tags/$TAG -b $TAG; fi
 ENV CGO_ENABLED=0
 ENV GOOS=linux 
 ENV GOARCH=amd64

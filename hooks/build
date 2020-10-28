@@ -1,0 +1,2 @@
+env
+docker build --build-arg TAG=$SOURCE_BRANCH -f $DOCKERFILE_PATH .
