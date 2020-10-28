@@ -1,8 +1,9 @@
 FROM golang:1 AS build
+RUN env
 WORKDIR /go/src
 RUN git clone https://github.com/drone/drone .
 ARG TAG=HEAD
-RUN [ -n "${TAG#HEAD}" ] && git checkout tags/$TAG -b $TAG
+RUN if [ -n "${TAG#HEAD}" ]; then git checkout tags/$TAG -b $TAG; fi
 ENV CGO_ENABLED=0
 ENV GOOS=linux 
 ENV GOARCH=amd64
