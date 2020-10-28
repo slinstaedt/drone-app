@@ -13,7 +13,7 @@ RUN cd /go/bin; for file in $(ls); do mv ${file} ${file#drone-}; done
 
 FROM alpine:3
 RUN apk add --no-cache ca-certificates
-RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+RUN if [ ! -e /etc/nsswitch.conf ]; then echo 'hosts: files dns' > /etc/nsswitch.conf; fi
 ENV GODEBUG netdns=go
 ENV DRONE_RUNNER_OS=linux
 ENV DRONE_RUNNER_ARCH=amd64
