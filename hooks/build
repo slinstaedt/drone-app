@@ -8,7 +8,7 @@ cp ../Dockerfile .
 export TAG=$(git describe --tags --abbrev=0)
 echo "Building tag: $TAG"
 
-docker build -t $IMAGE_NAME src
+docker build -t $IMAGE_NAME .
 
 version=${TAG#v}
 docker tag $IMAGE_NAME $DOCKER_REPO:${version}
