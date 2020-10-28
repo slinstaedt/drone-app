@@ -1,5 +1,6 @@
 FROM golang:1 AS build
-RUN env
+RUN echo $SOURCE_BRANCH
+RUN echo $DOCKER_TAG
 WORKDIR /go/src
 RUN git clone https://github.com/drone/drone .
 ARG TAG=HEAD
