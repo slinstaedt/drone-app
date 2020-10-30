@@ -5,12 +5,13 @@ mkdir -p src && cd src
 git clone https://github.com/drone/drone .
 rm .dockerignore
 cp ../Dockerfile .
-export TAG=$(git describe --tags --abbrev=0)
-echo "Building tag: $TAG"
+tag=$(git describe --tags --abbrev=0)
+version=${tag#v}
+echo "Building tag: $tag"
+git checkout tags/$tag -b $version
 
 docker build -t $IMAGE_NAME .
 
-version=${TAG#v}
 docker tag $IMAGE_NAME $DOCKER_REPO:${version}
 docker tag $IMAGE_NAME $DOCKER_REPO:${version%.*}
 docker tag $IMAGE_NAME $DOCKER_REPO:${version%%.*}
