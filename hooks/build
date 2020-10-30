@@ -3,12 +3,12 @@ set -eu
 
 mkdir -p src && cd src
 git clone https://github.com/drone/drone .
-rm .dockerignore
-cp ../Dockerfile .
 tag=$(git describe --tags --abbrev=0)
 version=${tag#v}
 echo "Building tag: $tag"
 git checkout tags/$tag -b $version
+rm .dockerignore
+cp ../Dockerfile .
 
 docker build -t $IMAGE_NAME .
 
