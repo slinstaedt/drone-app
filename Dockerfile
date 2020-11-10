@@ -19,4 +19,5 @@ ENV DRONE_RUNNER_OS=linux
 ENV DRONE_RUNNER_ARCH=amd64
 ENV DRONE_RUNNER_PLATFORM=linux/amd64
 COPY --from=build /go/bin/* /usr/local/bin/
+EXPOSE 8080
 ENTRYPOINT []
