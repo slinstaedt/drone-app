@@ -15,5 +15,7 @@ ENV GODEBUG netdns=go
 ENV DRONE_RUNNER_OS=linux
 ENV DRONE_RUNNER_ARCH=amd64
 ENV DRONE_RUNNER_PLATFORM=linux/amd64
-COPY --from=build /go/bin/* /usr/local/bin/
+ENV DRONE_DATADOG_ENABLED=false
+COPY --from=build /go/bin/drone-server /usr/local/bin/
+EXPOSE 8080
 ENTRYPOINT ["drone-server"]
